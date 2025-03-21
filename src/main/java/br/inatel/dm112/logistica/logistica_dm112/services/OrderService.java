@@ -1,23 +1,18 @@
 package br.inatel.dm112.logistica.logistica_dm112.services;
 
-import java.util.ArrayList;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import br.inatel.dm112.logistica.logistica_dm112.model.dao.OrderRepository;
-import br.inatel.dm112.logistica.logistica_dm112.services.entity.Order;
-
-public class OrderService {
-    @Autowired
-    private OrderRepository repo;
-
-    public ArrayList<Order> fetchOrders(String deliverPersonID) {
-        // Optional<OrderEntity> orderEntity = repo.findAll(deliverPersonID);
-    }
-
-    public void confirmDelivery(String orderID, String recipientCPF, String deliveryDateTime) {
-    }
-
-    public void registerDelivery(String orderID, String recipientCPF, String deliveryDateTime) {
+// Entity Service
+@RestController
+@RequestMapping("/orders")
+class OrderService {
+    @GetMapping("/{deliveryPersonID}")
+    public List<String> fetchOrders(@PathVariable String deliveryPersonID) {
+        return List.of("Order1", "Order2");
     }
 }
