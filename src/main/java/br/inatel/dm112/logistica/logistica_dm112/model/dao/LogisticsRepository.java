@@ -9,8 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import br.inatel.dm112.logistica.logistica_dm112.model.entities.OrderEntity;
 
 @Repository
-public interface OrderRepository extends JpaRepository<OrderEntity, Integer> {
+public interface LogisticsRepository extends JpaRepository<OrderEntity, Integer> {
 
-	@Transactional(readOnly = true)
-	List<OrderEntity> findByCPF(String cpf);
 }

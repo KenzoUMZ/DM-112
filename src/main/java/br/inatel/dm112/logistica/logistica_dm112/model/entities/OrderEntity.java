@@ -2,7 +2,6 @@ package br.inatel.dm112.logistica.logistica_dm112.model.entities;
 
 import java.util.Date;
 
-import br.inatel.dm112.logistica.logistica_dm112.model.Order.STATUS;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,94 +16,47 @@ import jakarta.persistence.TemporalType;
 public class OrderEntity {
 
     @Id
-    @Column(name = "numero")
+    @Column(name = "orderID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer number;
+    private String orderID;
 
-    private String CPF;
+    @Column(name = "deliveryPersonId", nullable = false)
+    private String deliveryPersonId;
 
-    @Column(name = "valor")
-    private float value;
-
-    private int status;
-
-    @Column(name = "dataPedido", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date orderDate;
-
-    @Column(name = "dataEmissao", nullable = true)
+    @Column(name = "deliveryDate", nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date issueDate;
-
-    @Column(name = "dataPagamento", nullable = true)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date paymentDate;
+    private Date deliveryDate;
 
     public OrderEntity() {
-        this.status = STATUS.FILLED.ordinal();
     }
 
-    public Integer getNumber() {
-        return number;
+    public String setOrderID() {
+        return orderID;
     }
 
-    public void setNumber(Integer number) {
-        this.number = number;
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
     }
 
-    public float getValue() {
-        return value;
+    public String getRecipientCPF() {
+        return deliveryPersonId;
     }
 
-    public void setValue(float value) {
-        this.value = value;
+    public void setRecipientCPF(String CPF) {
+        this.deliveryPersonId = CPF;
     }
 
-    public int getStatus() {
-        return status;
+    public Date getDeliveryDate() {
+        return deliveryDate;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public String getCPF() {
-        return CPF;
-    }
-
-    public void setCPF(String cPF) {
-        CPF = cPF;
-    }
-
-    public Date getIssueDate() {
-        return issueDate;
-    }
-
-    public void setIssueDate(Date issueDate) {
-        this.issueDate = issueDate;
-    }
-
-    public Date getPaymentDate() {
-        return paymentDate;
-    }
-
-    public void setPaymentDate(Date paymentDate) {
-        this.paymentDate = paymentDate;
+    public void setDeliveryDateTime(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
     }
 
     @Override
     public String toString() {
-        return "OrderEntity [number=" + number + ", CPF=" + CPF + ", value=" + value + ", status=" + status
-                + ", orderDate="
-                + orderDate + ", issueDate=" + issueDate + ", paymentDate=" + paymentDate + "]";
+        return "OrderEntity [orderID=" + orderID + ", CPF=" + deliveryPersonId + ", deliveryDate=" + deliveryDate + "]";
     }
 
 }
